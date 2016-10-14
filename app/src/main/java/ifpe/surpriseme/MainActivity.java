@@ -12,7 +12,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
-    private String[] tabs = {"Current background", "Categories", "Settings"};
+    private String[] tabs = {"Background", "Categories", "Settings"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

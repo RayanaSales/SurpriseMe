@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SurpriseMe</string>
+    <string name="gostou_da_imagem_">Gostou do Imagem ?</string>
+    <string name="Sim">Sim</string>
+    <string name="Nao">Não</string>
+    <string name="mudar_imagem_a_cada_">Mudar imagem a cada :</string>
+    <string name="salvar">Salvar</string>
 </resources>
