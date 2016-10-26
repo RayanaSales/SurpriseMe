@@ -18,12 +18,13 @@
 
             <TextView
                 android:id="@+id/background_gostouImagem"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/activity_vertical_margin"
                 android:gravity="center"
                 android:text="@string/gostou_da_imagem_"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:textColor="#1da1fa"/>
         </LinearLayout>
 
         <LinearLayout
@@ -103,7 +104,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:text="Imagem salva no dispositivo" />
+                    android:text="@string/imagem_salva_no_dispositivo"
+                    android:textColor="#1da1fa"/>
             </LinearLayout>
         </LinearLayout>
 
