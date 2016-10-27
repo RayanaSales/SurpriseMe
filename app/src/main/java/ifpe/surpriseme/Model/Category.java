@@ -3,10 +3,20 @@ package ifpe.surpriseme.Model;
 public class Category {
     private String Name;
     private String description;
+    private boolean isSelect;
 
     public Category(String name, String description) {
         this.Name = name;
         this.description = description;
+    }
+
+
+    public boolean isSelect() {
+        return isSelect;
+    }
+
+    public void setSelect(boolean select) {
+        isSelect = select;
     }
 
     public String getDescription() {
