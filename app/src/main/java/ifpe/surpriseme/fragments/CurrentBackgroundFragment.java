@@ -19,4 +19,6 @@ public class CurrentBackgroundFragment extends Fragment {
 
         return rootView;
     }
+
+
 }

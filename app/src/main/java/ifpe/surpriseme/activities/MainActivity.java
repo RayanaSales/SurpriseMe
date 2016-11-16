@@ -1,10 +1,16 @@
-package ifpe.surpriseme;
+package ifpe.surpriseme.activities;
+
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Window;
+import android.widget.EditText;
+import android.widget.ImageView;
+
+import ifpe.surpriseme.R;
+import ifpe.surpriseme.adapters.TabsPagerAdapter;
 
 //OBS: do arquivo androidmanifest tem que tirar a tag: android:theme="@style/AppTheme"
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener
@@ -33,6 +39,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         for (String tab_name : tabs) {
             actionBar.addTab(actionBar.newTab().setText(tab_name).setTabListener(this));
         }
+
+        String tag = "love".toString();
+        ImageView imgView = (ImageView) findViewById(R.id.imageView);
+        BackgroundActivity bc = new BackgroundActivity();
+        bc.changeCurrentBackground(imgView, tag);
 
         /**
          * on swiping the viewpager make respective tab selected

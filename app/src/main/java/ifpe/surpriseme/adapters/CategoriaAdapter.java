@@ -1,4 +1,4 @@
-package ifpe.surpriseme;
+package ifpe.surpriseme.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,13 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
 
-import ifpe.surpriseme.Model.Category;
-import ifpe.surpriseme.fragments.CategoriesFragment;
+import ifpe.surpriseme.models.CategoriaHolder;
+import ifpe.surpriseme.models.Category;
+import ifpe.surpriseme.R;
 
 public class CategoriaAdapter extends ArrayAdapter<Category> {
 

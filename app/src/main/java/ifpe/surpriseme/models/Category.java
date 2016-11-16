@@ -1,4 +1,4 @@
-package ifpe.surpriseme.Model;
+package ifpe.surpriseme.models;
 
 public class Category {
     private String Name;
