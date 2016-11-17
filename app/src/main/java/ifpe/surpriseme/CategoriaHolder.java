@@ -1,7 +1,9 @@
-package ifpe.surpriseme.models;
+package ifpe.surpriseme;
 
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by Natália on 27/10/2016.

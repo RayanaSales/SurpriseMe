@@ -1,4 +1,4 @@
-package ifpe.surpriseme.adapters;
+package ifpe.surpriseme;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,13 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
 
-import ifpe.surpriseme.models.CategoriaHolder;
-import ifpe.surpriseme.models.Category;
-import ifpe.surpriseme.R;
+import ifpe.surpriseme.Model.Category;
+import ifpe.surpriseme.fragments.CategoriesFragment;
 
 public class CategoriaAdapter extends ArrayAdapter<Category> {
 
@@ -67,10 +67,13 @@ public class CategoriaAdapter extends ArrayAdapter<Category> {
         }
 
         Category c = lista_categorias.get(position);
-        holder.categoria.setText(c.getName());
-        holder.descricao_categoria.setText(c.getDescription());
-        holder.checkBox.setChecked(c.isSelect());
-        holder.checkBox.setTag(c);
+
+        if(holder != null){
+            holder.categoria.setText(c.getName());
+            holder.descricao_categoria.setText(c.getDescription());
+            holder.checkBox.setChecked(c.isSelect());
+            holder.checkBox.setTag(c);
+        }
 
         int background1 = Color.parseColor("#59A985");
         int background2 = Color.parseColor("#E6D3A7");

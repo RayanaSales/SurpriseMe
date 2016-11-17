@@ -10,8 +10,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import ifpe.surpriseme.adapters.CategoriaAdapter;
-import ifpe.surpriseme.models.Category;
+import ifpe.surpriseme.CategoriaAdapter;
+import ifpe.surpriseme.Model.Category;
 import ifpe.surpriseme.R;
 
 public class CategoriesFragment extends Fragment  {

@@ -21,7 +21,7 @@
             android:textSize="15dp" />
 
         <Switch
-            android:id="@+id/saveSwitch"
+            android:id="@+id/saveToPhone_Switch"
             android:layout_width="0pt"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -45,9 +45,11 @@
             android:textSize="15dp" />
 
         <EditText
+            android:id="@+id/changeTime_editText"
             android:layout_width="0pt"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="#74DBEF"/>
     </LinearLayout>
 
     <LinearLayout
@@ -57,14 +59,16 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/Submeter"
+            android:id="@+id/submitSettings_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_horizontal_margin"
             android:background="#74DBEF"
             android:text="@string/Submit"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:onClick="saveSettingsClick"/>
+
 
     </LinearLayout>
 
