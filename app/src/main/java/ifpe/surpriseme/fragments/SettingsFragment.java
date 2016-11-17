@@ -50,19 +50,19 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         }
 
         //READING - test
-//        DataInputStream inputStream;
-//        try {
-//            inputStream = new DataInputStream(getActivity().openFileInput("ChangeTime"));
-//            String changeTimeValue = inputStream.readUTF();
-//
-//            inputStream = new DataInputStream(getActivity().openFileInput("SaveToPhone"));
-//            boolean saveToPhoneValue = inputStream.readBoolean();
-//            inputStream.close();
-//
-//            Toast.makeText(getActivity(), "changeTimeValue: " + changeTimeValue + " - saveToPhoneValue: " + saveToPhoneValue, Toast.LENGTH_SHORT).show();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        DataInputStream inputStream;
+        try {
+            inputStream = new DataInputStream(getActivity().openFileInput("ChangeTime"));
+            String changeTimeValue = inputStream.readUTF();
+
+            inputStream = new DataInputStream(getActivity().openFileInput("SaveToPhone"));
+            boolean saveToPhoneValue = inputStream.readBoolean();
+            inputStream.close();
+
+            Toast.makeText(getActivity(), "changeTimeValue: " + changeTimeValue + " - saveToPhoneValue: " + saveToPhoneValue, Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
