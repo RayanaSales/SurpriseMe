@@ -1,4 +1,4 @@
-package ifpe.surpriseme;
+package ifpe.surpriseme.Model;
 
 import android.widget.CheckBox;
 import android.widget.TextView;

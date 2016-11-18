@@ -1,10 +1,14 @@
-package ifpe.surpriseme;
+package ifpe.surpriseme.activities;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Window;
+
+import ifpe.surpriseme.R;
+import ifpe.surpriseme.adapters.CategoriaAdapter;
+import ifpe.surpriseme.adapters.TabsPagerAdapter;
 
 //OBS: do arquivo androidmanifest tem que tirar a tag: android:theme="@style/AppTheme"
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener

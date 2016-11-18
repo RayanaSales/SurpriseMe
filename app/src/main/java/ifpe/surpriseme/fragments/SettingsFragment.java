@@ -57,19 +57,6 @@ public class SettingsFragment extends Fragment {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            //tentando encontrar o dir do file
-            Field pathField = null;
-            String path = "";
-            try {
-                pathField = FileOutputStream.class.getDeclaredField(".");
-                pathField.setAccessible(true);
-                path = (String) pathField.get(outputStream);
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-            Toast.makeText(getActivity()," path: " + path, Toast.LENGTH_SHORT).show();
 
             //READING - TESTE
             DataInputStream inputStream;
