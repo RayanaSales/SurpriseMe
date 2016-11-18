@@ -5,9 +5,9 @@ public class Category {
     private String description;
     private boolean isSelect;
 
-    public Category(String name, String description) {
+    public Category(String name, Boolean isSelect) {
         this.Name = name;
-        this.description = description;
+        this.isSelect = isSelect;
     }
 
 

@@ -9,6 +9,7 @@ import android.view.Window;
 import ifpe.surpriseme.R;
 import ifpe.surpriseme.adapters.CategoriaAdapter;
 import ifpe.surpriseme.adapters.TabsPagerAdapter;
+import ifpe.surpriseme.database.DatabaseHelper;
 
 //OBS: do arquivo androidmanifest tem que tirar a tag: android:theme="@style/AppTheme"
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener

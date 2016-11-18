@@ -1,6 +1,8 @@
 package ifpe.surpriseme.fragments;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,6 +27,8 @@ import java.lang.reflect.Field;
 import java.util.Scanner;
 
 import ifpe.surpriseme.R;
+import ifpe.surpriseme.database.DatabaseHelper;
+import ifpe.surpriseme.database.DatabaseSchemaHelper;
 
 public class SettingsFragment extends Fragment {
 
@@ -48,27 +52,21 @@ public class SettingsFragment extends Fragment {
         public void onClick(View v){
             String categoryName_editText = ((EditText) getView().findViewById(R.id.category_name_edit_text)).getText().toString();
 
-            //SALVAR
-            DataOutputStream outputStream = null;
-            try {
-                outputStream = new DataOutputStream(getActivity().openFileOutput(categoryName_editText, Context.MODE_PRIVATE)); //nome da categoria
-                outputStream.writeBoolean(false); //isSelect
-                outputStream.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
 
-            //READING - TESTE
-            DataInputStream inputStream;
-            boolean valor = false;
-            try {
-                inputStream = new DataInputStream(getActivity().openFileInput(categoryName_editText));
-                valor = inputStream.readBoolean();
-                inputStream.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            Toast.makeText(getActivity()," valor: " + valor, Toast.LENGTH_SHORT).show();
+            DatabaseHelper dh = new DatabaseHelper(getActivity());
+            SQLiteDatabase ds = dh.getWritableDatabase();
+
+            String category_name_edit_text = ((EditText) getView().findViewById(R.id.category_name_edit_text)).getText().toString();
+
+            ContentValues values = new ContentValues();
+            values.put(DatabaseSchemaHelper.Category.COLUMN_NAME_CATEGORY_NAME, category_name_edit_text);
+            values.put(DatabaseSchemaHelper.Category.COLUMN_NAME_CHANGE_ISACTIVE, false);
+
+            long newId = ds.insert(DatabaseSchemaHelper.Category.TABLE_NAME, null, values);
+
+            Toast toast = Toast.makeText(getActivity(), "Registro adicionado. ID = " + newId, Toast.LENGTH_SHORT);
+            toast.show();
+
         }
     };
 
@@ -76,37 +74,22 @@ public class SettingsFragment extends Fragment {
     private View.OnClickListener buttonClickSaveSettingsListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
+            // INSERT
+            DatabaseHelper dh = new DatabaseHelper(getActivity());
+            SQLiteDatabase ds = dh.getWritableDatabase();
+
+            Boolean saveToPhone_boolean = ((Switch) getView().findViewById(R.id.saveToPhone_Switch)).isChecked();
             String changeTime_editText = ((EditText) getView().findViewById(R.id.changeTime_editText)).getText().toString();
-            boolean saveToPhone_Switch = ((Switch) getView().findViewById(R.id.saveToPhone_Switch)).isChecked();
 
-            DataOutputStream outputStream;
-            try {
-                outputStream = new DataOutputStream(getActivity().openFileOutput("ChangeTime", Context.MODE_PRIVATE)); //file name / quem acessa
-                outputStream.writeUTF(changeTime_editText);
+            ContentValues values = new ContentValues();
+            values.put(DatabaseSchemaHelper.UserSettings.COLUMN_NAME_CHANGE_IMAGEM_TIME, changeTime_editText);
+            values.put(DatabaseSchemaHelper.UserSettings.COLUMN_NAME_SAVE_IMAGE_TOPHONE, saveToPhone_boolean);
 
-                outputStream = new DataOutputStream(getActivity().openFileOutput("SaveToPhone", Context.MODE_PRIVATE)); //file name / quem acessa
-                outputStream.writeBoolean(saveToPhone_Switch);
+            long newId = ds.insert(DatabaseSchemaHelper.UserSettings.TABLE_NAME, null, values);
 
-                outputStream.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            //READING - test
-            DataInputStream inputStream;
-            try {
-                inputStream = new DataInputStream(getActivity().openFileInput("ChangeTime"));
-                String changeTimeValue = inputStream.readUTF();
-
-                inputStream = new DataInputStream(getActivity().openFileInput("SaveToPhone"));
-                boolean saveToPhoneValue = inputStream.readBoolean();
-                inputStream.close();
-
-                Toast.makeText(getActivity(), "changeTimeValue: " + changeTimeValue + " - saveToPhoneValue: " + saveToPhoneValue, Toast.LENGTH_SHORT).show();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Toast toast = Toast.makeText(getActivity(), "Registro adicionado. ID = " + newId, Toast.LENGTH_SHORT);
+            toast.show();
         }
     };
 }
