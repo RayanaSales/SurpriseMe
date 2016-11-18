@@ -54,13 +54,11 @@ public class CategoriesFragment extends Fragment  {
 
         while(c.moveToNext())
         {
-
             String category_name = c.getString(c.getColumnIndex(DatabaseSchemaHelper.Category.COLUMN_NAME_CATEGORY_NAME));
             Boolean category_boolean = c.getInt(c.getColumnIndex(DatabaseSchemaHelper.Category.COLUMN_NAME_CHANGE_ISACTIVE)) > 0;
             Category category = new Category(category_name, category_boolean);
             lista_categoria.add(category);
         }
-
 
         if (lv.getAdapter() == null) {
             categoria_adapter = new CategoriaAdapter(lista_categoria, getActivity());

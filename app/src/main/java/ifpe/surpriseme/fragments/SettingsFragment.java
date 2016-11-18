@@ -2,6 +2,7 @@ package ifpe.surpriseme.fragments;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -47,6 +48,7 @@ public class SettingsFragment extends Fragment {
     }
 
     //evento para tratar o salvar categoria
+    // A CATEGORIA PODE SER SALVA VÁRIAS VEZES.
     private View.OnClickListener buttonClickSaveCategoryListener = new View.OnClickListener() {
         @Override
         public void onClick(View v){
@@ -71,6 +73,7 @@ public class SettingsFragment extends Fragment {
     };
 
     //evento para tratar o botão salvar configurações
+    // JÁ AS CONFIGURAÇÕES UMA VEZ SALVAS, APENAS SERÃO EDITADAS.
     private View.OnClickListener buttonClickSaveSettingsListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -79,6 +82,9 @@ public class SettingsFragment extends Fragment {
             DatabaseHelper dh = new DatabaseHelper(getActivity());
             SQLiteDatabase ds = dh.getWritableDatabase();
 
+            String[] columns = {DatabaseSchemaHelper.UserSettings._ID};
+            Cursor c = ds.query(DatabaseSchemaHelper.UserSettings.TABLE_NAME, columns, "", null , "", "", "", "");
+
             Boolean saveToPhone_boolean = ((Switch) getView().findViewById(R.id.saveToPhone_Switch)).isChecked();
             String changeTime_editText = ((EditText) getView().findViewById(R.id.changeTime_editText)).getText().toString();
 
@@ -86,10 +92,22 @@ public class SettingsFragment extends Fragment {
             values.put(DatabaseSchemaHelper.UserSettings.COLUMN_NAME_CHANGE_IMAGEM_TIME, changeTime_editText);
             values.put(DatabaseSchemaHelper.UserSettings.COLUMN_NAME_SAVE_IMAGE_TOPHONE, saveToPhone_boolean);
 
-            long newId = ds.insert(DatabaseSchemaHelper.UserSettings.TABLE_NAME, null, values);
+            if(c.getCount() == 0)
+            {
+                long newId = ds.insert(DatabaseSchemaHelper.UserSettings.TABLE_NAME, null, values);
 
-            Toast toast = Toast.makeText(getActivity(), "Registro adicionado. ID = " + newId, Toast.LENGTH_SHORT);
-            toast.show();
+                Toast toast = Toast.makeText(getActivity(), "Registro adicionado. ID = " + newId, Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            else
+            {
+                long newId = ds.update(DatabaseSchemaHelper.UserSettings.TABLE_NAME, values,DatabaseSchemaHelper.UserSettings._ID + " =  1" , null );
+
+                Toast toast = Toast.makeText(getActivity(), "Registro atualizado. ID = " + newId, Toast.LENGTH_SHORT);
+                toast.show();
+
+            }
+
         }
     };
 }

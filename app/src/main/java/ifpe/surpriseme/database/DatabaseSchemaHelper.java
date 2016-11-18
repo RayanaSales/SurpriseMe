@@ -9,11 +9,20 @@ import ifpe.surpriseme.Model.Category;
  */
 public class DatabaseSchemaHelper {
 
+    /**
+     * UPDATE table_name
+     SET column1 = value1, column2 = value2...., columnN = valueN
+     WHERE [condition];
+     *
+     * */
+    public static String change_image_time;
+    public static boolean save_image_tophone;
     public static final String DATABASE_NAME = "SurpriseMe.db";
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 6;
 
     public static final String SQL_CREATE_USERSETTINGS = "CREATE TABLE " + UserSettings.TABLE_NAME + " (" + UserSettings._ID + " INTEGER PRIMARY KEY, " +
             UserSettings.COLUMN_NAME_CHANGE_IMAGEM_TIME + " TEXT, " + UserSettings.COLUMN_NAME_SAVE_IMAGE_TOPHONE + " BOOLEAN " + ")";
+
     public static final String SQL_DELETE_USERSETTINGS = "" + "DROP TABLE IF EXISTS " + UserSettings.TABLE_NAME;
 
     public static final String SQL_CREATE_CATEGORY = "CREATE TABLE " + Category.TABLE_NAME + " (" + Category._ID + " INTEGER PRIMARY KEY, " +
