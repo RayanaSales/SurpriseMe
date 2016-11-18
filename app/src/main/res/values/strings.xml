@@ -8,4 +8,7 @@
     <string name="salvar">Salvar</string>
     <string name="salvar_imagem_no_celular">Salvar imagem</string>
     <string name="imagem_salva_no_dispositivo">Imagem salva no dispositivo</string>
+
+    <string name="category_label">Categoria:</string>
+    <string name="save_category_button">Adicionar</string>
 </resources>

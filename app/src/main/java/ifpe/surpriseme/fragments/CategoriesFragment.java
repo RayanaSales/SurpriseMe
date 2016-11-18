@@ -37,6 +37,8 @@ public class CategoriesFragment extends Fragment  {
     private void displayListaCategorias()
     {
         lista_categoria = new ArrayList<Category>();
+        //ler do arquivo as categorias
+
         lista_categoria.add(new Category("Praia", ""));
         lista_categoria.add(new Category("Moda", ""));
         lista_categoria.add(new Category("Carros", ""));
