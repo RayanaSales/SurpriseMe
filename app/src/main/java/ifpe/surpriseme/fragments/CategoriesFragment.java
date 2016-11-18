@@ -52,11 +52,11 @@ public class CategoriesFragment extends Fragment  {
 
         Cursor c = ds.query(DatabaseSchemaHelper.Category.TABLE_NAME, columns, "", null , "", "", "", "");
 
-        while(!c.isAfterLast())
+        while(c.moveToNext())
         {
-            String category_name = "";
-            String i = c.getString(c.getColumnIndex(DatabaseSchemaHelper.Category.COLUMN_NAME_CATEGORY_NAME));
-            Boolean category_boolean = c.getInt(1) > 0;
+
+            String category_name = c.getString(c.getColumnIndex(DatabaseSchemaHelper.Category.COLUMN_NAME_CATEGORY_NAME));
+            Boolean category_boolean = c.getInt(c.getColumnIndex(DatabaseSchemaHelper.Category.COLUMN_NAME_CHANGE_ISACTIVE)) > 0;
             Category category = new Category(category_name, category_boolean);
             lista_categoria.add(category);
         }
