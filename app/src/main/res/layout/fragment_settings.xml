@@ -18,7 +18,8 @@
             android:layout_weight="1"
             android:text="@string/salvar_imagem_no_celular"
             android:textColor="#1da1fa"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            />
 
         <Switch
             android:id="@+id/saveToPhone_Switch"
