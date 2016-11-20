@@ -1,5 +1,7 @@
 package ifpe.surpriseme.fragments;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import ifpe.surpriseme.Model.Category;
 import ifpe.surpriseme.R;
 import ifpe.surpriseme.adapters.CategoriaAdapter;
+import ifpe.surpriseme.database.DatabaseHelper;
 import ifpe.surpriseme.database.DatabaseSchemaHelper;
 import ifpe.surpriseme.database.ManagerDatabase;
 
@@ -27,6 +30,7 @@ public class CategoriesFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_categories, container, false);
         lv = (ListView) v.findViewById(R.id.listview_categorias);
+        listAllCategories();
         return v;
     }
 
@@ -39,6 +43,9 @@ public class CategoriesFragment extends Fragment {
     public void listAllCategories() {
         if (lista_categoria == null)
             lista_categoria = new ArrayList<Category>();
+
+        if(lv == null)
+            lv = (ListView) getView().findViewById(R.id.listview_categorias);
 
         if (!lista_categoria.isEmpty()) {
             lista_categoria.removeAll(lista_categoria);

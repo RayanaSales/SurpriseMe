@@ -37,4 +37,12 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         return 3;
     }
 
+    @Override
+    public int getItemPosition(Object object) {
+        if (object instanceof CategoriesFragment ) {
+            ((CategoriesFragment )object).listAllCategories();
+        }
+        return super.getItemPosition(object);
+    }
+
 }
