@@ -76,7 +76,7 @@ public class CategoriaAdapter extends ArrayAdapter<Category> {
 
         if(holder != null){
             holder.categoria.setText(c.getName());
-            holder.descricao_categoria.setText(c.getDescription());
+            //holder.descricao_categoria.setText(c.getDescription());
             holder.checkBox.setChecked(c.isSelect());
             holder.checkBox.setTag(c);
         }
