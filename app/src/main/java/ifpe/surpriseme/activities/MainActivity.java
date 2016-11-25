@@ -1,10 +1,12 @@
 package ifpe.surpriseme.activities;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.view.Window;
 
 import ifpe.surpriseme.R;
@@ -12,6 +14,7 @@ import ifpe.surpriseme.adapters.CategoriaAdapter;
 import ifpe.surpriseme.adapters.TabsPagerAdapter;
 import ifpe.surpriseme.database.DatabaseHelper;
 import ifpe.surpriseme.fragments.CategoriesFragment;
+import ifpe.surpriseme.service.ServiceTest;
 
 //OBS: do arquivo androidmanifest tem que tirar a tag: android:theme="@style/AppTheme"
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener
@@ -63,6 +66,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         });
     }
 
+    public void startService(View view)
+    {
+        Intent it = new Intent(this, ServiceTest.class);
+        startService(it);
+    }
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
         // on tab selected

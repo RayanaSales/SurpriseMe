@@ -2,6 +2,7 @@ package ifpe.surpriseme.fragments;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,10 +18,14 @@ import android.widget.Toast;
 import ifpe.surpriseme.R;
 import ifpe.surpriseme.database.DatabaseSchemaHelper;
 import ifpe.surpriseme.database.ManagerDatabase;
+import ifpe.surpriseme.service.ServiceTest;
+import ifpe.surpriseme.time.MyCountDownTimer;
 
 public class SettingsFragment extends Fragment {
 
     private Spinner timeSpinner;
+    public EditText editText_frequency;
+    public static String changeTime_editText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,6 +43,8 @@ public class SettingsFragment extends Fragment {
 
         return rootView;
     }
+
+
 
     //evento para tratar o salvar categoria
     // A CATEGORIA PODE SER SALVA VÁRIAS VEZES.
@@ -104,6 +111,7 @@ class CustomOnItemSelectedListener implements AdapterView.OnItemSelectedListener
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         //Toast.makeText(parent.getContext(), "Frequencia selecionada: " + parent.getItemAtPosition(pos).toString(), Toast.LENGTH_SHORT).show();
         this.frequency = parent.getItemAtPosition(pos).toString();
+
     }
 
     @Override

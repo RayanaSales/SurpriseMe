@@ -125,6 +125,12 @@
             android:text="@string/save_category_button"
             android:textColor="#FFFFFF"
             android:textSize="20sp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Servico"
+            android:id="@+id/servico"
+            android:onClick="startService"/>
     </LinearLayout>
 
 </LinearLayout>
