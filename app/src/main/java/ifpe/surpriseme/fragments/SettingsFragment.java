@@ -1,13 +1,16 @@
 package ifpe.surpriseme.fragments;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -16,6 +19,8 @@ import ifpe.surpriseme.database.DatabaseSchemaHelper;
 import ifpe.surpriseme.database.ManagerDatabase;
 
 public class SettingsFragment extends Fragment {
+
+    private Spinner timeSpinner;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -27,6 +32,9 @@ public class SettingsFragment extends Fragment {
 
         Button saveCategorySettings = (Button) rootView.findViewById(R.id.submitCategorySettings_button);
         saveCategorySettings.setOnClickListener(buttonClickSaveCategoryListener);
+
+        timeSpinner = (Spinner) rootView.findViewById(R.id.selectTime_spinner);
+        timeSpinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
 
         return rootView;
     }
@@ -69,6 +77,7 @@ public class SettingsFragment extends Fragment {
             ContentValues values = new ContentValues();
             values.put(DatabaseSchemaHelper.UserSettings.COLUMN_NAME_CHANGE_IMAGEM_TIME, changeTime_editText);
             values.put(DatabaseSchemaHelper.UserSettings.COLUMN_NAME_SAVE_IMAGE_TOPHONE, saveToPhone_boolean);
+            values.put(DatabaseSchemaHelper.UserSettings.COLUMN_NAME_FREQUENCY, CustomOnItemSelectedListener.frequency);
 
             if (md.c.getCount() == 0) {
                 long newId = md.ds.insert(DatabaseSchemaHelper.UserSettings.TABLE_NAME, null, values);
@@ -85,4 +94,21 @@ public class SettingsFragment extends Fragment {
 
         }
     };
+
+}
+
+class CustomOnItemSelectedListener implements AdapterView.OnItemSelectedListener {
+
+    public static String frequency;
+
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+        //Toast.makeText(parent.getContext(), "Frequencia selecionada: " + parent.getItemAtPosition(pos).toString(), Toast.LENGTH_SHORT).show();
+        this.frequency = parent.getItemAtPosition(pos).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
+    }
+
 }

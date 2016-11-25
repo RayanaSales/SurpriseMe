@@ -11,4 +11,12 @@
 
     <string name="category_label">Categoria:</string>
     <string name="save_category_button">Adicionar</string>
+
+    <string name="time_prompt">Choose a time</string>
+
+    <string-array name="time_arrays">
+        <item>Minutes</item>
+        <item>Hours</item>
+        <item>Days</item>
+    </string-array>
 </resources>

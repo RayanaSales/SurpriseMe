@@ -60,21 +60,22 @@ public class CurrentBackgroundFragment extends Fragment {
                 },
                 15000
         );
-
-        Toast.makeText(getActivity(), "Imagem definida como background", Toast.LENGTH_LONG).show();
-
+        //Toast.makeText(getActivity(), "Imagem definida como background", Toast.LENGTH_LONG).show();
         return rootView;
     }
 
     public String sortTagFromRepository(){
         ArrayList<Category> categories = CategoryRepository.getCategoryRepository().list(getActivity());
 
-        Random random = new Random();
-        int position = random.nextInt(categories.size());
+        if(categories.size() != 0){
+            Random random = new Random();
+            int position = random.nextInt(categories.size());
 
-        System.out.println("Tag sorteada: " + categories.get(position).getName());
+            System.out.println("Tag sorteada: " + categories.get(position).getName());
 
-        return categories.get(position).getName();
+            return categories.get(position).getName();
+        }
+        return "love";
     }
 
     public void changeSystemBackground(ImageView imageSorted){

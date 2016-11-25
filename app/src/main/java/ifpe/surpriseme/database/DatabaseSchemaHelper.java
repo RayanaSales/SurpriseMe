@@ -21,7 +21,8 @@ public class DatabaseSchemaHelper {
     public static final int DATABASE_VERSION = 6;
 
     public static final String SQL_CREATE_USERSETTINGS = "CREATE TABLE " + UserSettings.TABLE_NAME + " (" + UserSettings._ID + " INTEGER PRIMARY KEY, " +
-            UserSettings.COLUMN_NAME_CHANGE_IMAGEM_TIME + " TEXT, " + UserSettings.COLUMN_NAME_SAVE_IMAGE_TOPHONE + " BOOLEAN " + ")";
+            UserSettings.COLUMN_NAME_CHANGE_IMAGEM_TIME + " TEXT, " + UserSettings.COLUMN_NAME_SAVE_IMAGE_TOPHONE + " BOOLEAN, " +
+                                                                      UserSettings.COLUMN_NAME_FREQUENCY + " TEXT " + ")";
 
     public static final String SQL_DELETE_USERSETTINGS = "" + "DROP TABLE IF EXISTS " + UserSettings.TABLE_NAME;
 
@@ -33,6 +34,7 @@ public class DatabaseSchemaHelper {
         public static final String TABLE_NAME = "UserSettings";
         public static final String COLUMN_NAME_CHANGE_IMAGEM_TIME = "ChangeImageTime";
         public static final String COLUMN_NAME_SAVE_IMAGE_TOPHONE = "SaveImagemToPhone";
+        public static final String COLUMN_NAME_FREQUENCY = "Frequency";
     }
 
     public static abstract class Category implements BaseColumns {
