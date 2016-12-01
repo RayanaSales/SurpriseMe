@@ -14,9 +14,13 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import ifpe.surpriseme.Model.PhoneSettings;
 import ifpe.surpriseme.R;
 import ifpe.surpriseme.database.DatabaseSchemaHelper;
 import ifpe.surpriseme.database.ManagerDatabase;
+import ifpe.surpriseme.repositories.SettingsRepository;
 
 public class SettingsFragment extends Fragment {
 
@@ -36,7 +40,40 @@ public class SettingsFragment extends Fragment {
         timeSpinner = (Spinner) rootView.findViewById(R.id.selectTime_spinner);
         timeSpinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
 
+        initSettingsFragment(rootView);
+
         return rootView;
+    }
+
+    private void initSettingsFragment(View rootView){
+
+        Switch saveToPhone_Switch = (Switch) rootView.findViewById(R.id.saveToPhone_Switch);
+        EditText changeTime_editText = (EditText) rootView.findViewById(R.id.changeTime_editText);
+        Spinner selectTime_spinner = (Spinner)  rootView.findViewById(R.id.selectTime_spinner);
+
+        ArrayList<PhoneSettings> list_settings = SettingsRepository.getSettingsRepository().list(getActivity());
+
+        if(!list_settings.isEmpty()){
+
+            if (list_settings.get(0).isSaveOnDevice() == true){
+                saveToPhone_Switch.setChecked(true);
+            }
+            else saveToPhone_Switch.setChecked(false);
+
+            changeTime_editText.setText(list_settings.get(0).getValueFrequency());
+
+            switch (list_settings.get(0).getTimeFrequency()){
+                case "Minutes":
+                    selectTime_spinner.setSelection(0);
+                    break;
+                case "Hours":
+                    selectTime_spinner.setSelection(1);
+                    break;
+                case "Days":
+                    selectTime_spinner.setSelection(2);
+                    break;
+            }
+        }
     }
 
     //evento para tratar o salvar categoria

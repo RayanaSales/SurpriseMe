@@ -37,14 +37,6 @@
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:orientation="horizontal">
 
-        <!--<TextView-->
-            <!--android:layout_width="0pt"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:text="@string/mudar_imagem_a_cada_"-->
-            <!--android:textColor="#1da1fa"-->
-            <!--android:textSize="15dp" />-->
-
         <EditText
             android:id="@+id/changeTime_editText"
             android:layout_width="0pt"
