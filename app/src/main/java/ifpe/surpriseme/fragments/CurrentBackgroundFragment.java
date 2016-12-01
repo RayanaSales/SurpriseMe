@@ -1,9 +1,11 @@
 package ifpe.surpriseme.fragments;
 
 import android.app.WallpaperManager;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
@@ -37,35 +39,55 @@ public class CurrentBackgroundFragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.fragment_current_background, container, false);
         ImageView imageView = (ImageView) rootView.findViewById(R.id.imageView);
+        boolean internet = verificaConexao();
+        if(internet) {
+            try {
+                photoUrl = new ManagerFlickr().execute(sortTagFromRepository()).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+            Picasso.with(getContext()).load(photoUrl).resize(950, 900).into(imageView); //largura x altura
 
-        try {
-            photoUrl = new ManagerFlickr().execute(sortTagFromRepository()).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+            //set system background
+            new java.util.Timer().schedule(
+                    new java.util.TimerTask() {
+                        @Override
+                        public void run() {
+                            ImageView imageView = (ImageView) rootView.findViewById(R.id.imageView);
+
+                            if (imageView != null)
+                                changeSystemBackground(imageView);
+                        }
+                    },
+                    15000
+            );
         }
-        Picasso.with(getContext()).load(photoUrl).resize(950, 900).into(imageView); //largura x altura
-
-        //set system background
-        new java.util.Timer().schedule(
-                new java.util.TimerTask() {
-                    @Override
-                    public void run() {
-                        ImageView imageView = (ImageView) rootView.findViewById(R.id.imageView);
-
-                        if(imageView != null)
-                            changeSystemBackground(imageView);
-                    }
-                },
-                15000
-        );
+        else
+        {
+            Toast toast = Toast.makeText(getActivity(), "Sem internet! Por favor se conecte com alguma rede! ", Toast.LENGTH_SHORT);
+            toast.show();
+        }
         //Toast.makeText(getActivity(), "Imagem definida como background", Toast.LENGTH_LONG).show();
         return rootView;
     }
 
+    public  boolean verificaConexao() {
+        boolean conectado;
+        ConnectivityManager conectivtyManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (conectivtyManager.getActiveNetworkInfo() != null
+                && conectivtyManager.getActiveNetworkInfo().isAvailable()
+                && conectivtyManager.getActiveNetworkInfo().isConnected()) {
+            conectado = true;
+        } else {
+            conectado = false;
+        }
+        return conectado;
+    }
+
     public String sortTagFromRepository(){
-        ArrayList<Category> categories = CategoryRepository.getCategoryRepository().list(getActivity());
+        ArrayList<Category> categories = CategoryRepository.getCategoryRepository().list(getActivity(), true);
 
         if(categories.size() != 0){
             Random random = new Random();

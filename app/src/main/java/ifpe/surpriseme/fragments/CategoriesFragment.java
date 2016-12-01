@@ -6,7 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -36,7 +39,7 @@ public class CategoriesFragment extends Fragment {
 
     public void listAllCategories() {
 
-        ArrayList<Category> lista_categoria = CategoryRepository.getCategoryRepository().list(getActivity());
+        ArrayList<Category> lista_categoria = CategoryRepository.getCategoryRepository().list(getActivity(), false);
 
         if(lv == null)
             lv = (ListView) getView().findViewById(R.id.listview_categorias);
@@ -48,6 +51,7 @@ public class CategoriesFragment extends Fragment {
             categoria_adapter.notifyDataSetChanged();
         }
     }
+
 
     @Override
     public void onResume() {

@@ -22,7 +22,7 @@ public class CategoryRepository {
         return categoryRepository;
     }
 
-    public ArrayList<Category> list(FragmentActivity activity) {
+    public ArrayList<Category> list(FragmentActivity activity, Boolean checked) {
 
         ArrayList<Category> lista_categoria = new ArrayList<Category>();
 
@@ -30,10 +30,25 @@ public class CategoryRepository {
         ManagerDatabase md = new ManagerDatabase(activity, DatabaseSchemaHelper.Category.TABLE_NAME, columns);
 
         while (md.c.moveToNext()) {
-            String category_name = md.c.getString(md.c.getColumnIndex(DatabaseSchemaHelper.Category.COLUMN_NAME_CATEGORY_NAME));
-            Boolean category_boolean = md.c.getInt(md.c.getColumnIndex(DatabaseSchemaHelper.Category.COLUMN_NAME_CHANGE_ISACTIVE)) > 0;
-            Category category = new Category(category_name, category_boolean);
-            lista_categoria.add(category);
+
+            // Retorna apenas os selecionados
+            if(checked)
+            {
+                Boolean category_boolean = md.c.getInt(md.c.getColumnIndex(DatabaseSchemaHelper.Category.COLUMN_NAME_CHANGE_ISACTIVE)) > 0;
+                if(category_boolean)
+                {
+                    String category_name = md.c.getString(md.c.getColumnIndex(DatabaseSchemaHelper.Category.COLUMN_NAME_CATEGORY_NAME));
+                    Category category = new Category(category_name, category_boolean);
+                    lista_categoria.add(category);
+                }
+            }
+           else // lista todas as categorias
+            {
+                Boolean category_boolean = md.c.getInt(md.c.getColumnIndex(DatabaseSchemaHelper.Category.COLUMN_NAME_CHANGE_ISACTIVE)) > 0;
+                String category_name = md.c.getString(md.c.getColumnIndex(DatabaseSchemaHelper.Category.COLUMN_NAME_CATEGORY_NAME));
+                Category category = new Category(category_name, category_boolean);
+                lista_categoria.add(category);
+            }
         }
 
         return lista_categoria;
