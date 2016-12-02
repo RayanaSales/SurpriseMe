@@ -1,11 +1,13 @@
 package ifpe.surpriseme.Model;
 
-public class Category
-{
+import java.io.Serializable;
+
+public class Category implements Serializable{
+    private Long id;
     private String Name;
     private boolean isSelect;
 
-    public Category(){
+    public Category() {
         super();
     }
 
@@ -29,4 +31,13 @@ public class Category
     public void setName(String name) {
         Name = name;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }

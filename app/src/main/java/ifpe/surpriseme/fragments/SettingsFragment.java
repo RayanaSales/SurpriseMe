@@ -2,6 +2,7 @@ package ifpe.surpriseme.fragments;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import ifpe.surpriseme.Model.Category;
 import ifpe.surpriseme.Model.PhoneSettings;
 import ifpe.surpriseme.R;
 import ifpe.surpriseme.database.DatabaseSchemaHelper;
@@ -81,7 +83,6 @@ public class SettingsFragment extends Fragment {
     private View.OnClickListener buttonClickSaveCategoryListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            String categoryName_editText = ((EditText) getView().findViewById(R.id.category_name_edit_text)).getText().toString();
 
             ManagerDatabase md = new ManagerDatabase(getActivity());
 
@@ -95,6 +96,17 @@ public class SettingsFragment extends Fragment {
 
             Toast toast = Toast.makeText(getActivity(), "Registro adicionado. ID = " + newId, Toast.LENGTH_SHORT);
             toast.show();
+
+            Category category = new Category();
+            category.setName(category_name_edit_text);
+            category.setId(newId);
+
+            Intent intent = new Intent(CategoriesFragment.UPDATE_LIST);
+            intent.putExtra(CategoriesFragment.NEW_CATEGORY, category);
+
+            if (getActivity() != null) {
+                getActivity().sendBroadcast(intent);
+            }
 
         }
     };

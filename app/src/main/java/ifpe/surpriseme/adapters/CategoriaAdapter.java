@@ -26,12 +26,14 @@ public class CategoriaAdapter extends ArrayAdapter<Category> {
 
     private List<Category> lista_categorias;
     private Context context;
+    private CategoriesListener categoriesListener;
 
-    public CategoriaAdapter(List<Category> lista_categorias, Context context)
+    public CategoriaAdapter(List<Category> lista_categorias, Context context, CategoriesListener categoriesListener)
     {
         super(context, R.layout.categories_checkbox, lista_categorias);
         this.lista_categorias = lista_categorias;
         this.context = context;
+        this.categoriesListener = categoriesListener;
     }
 
     @Override
@@ -50,6 +52,7 @@ public class CategoriaAdapter extends ArrayAdapter<Category> {
             holder.descricao_categoria = (TextView) v.findViewById(R.id.descricao_categoria);
             holder.checkBox = (CheckBox) v.findViewById(R.id.chk_box);
 
+            holder.checkBox.setOnClickListener(onClickCheckbox(position));
 
             holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -92,6 +95,21 @@ public class CategoriaAdapter extends ArrayAdapter<Category> {
         }
 
         return v;
+    }
+
+    public View.OnClickListener onClickCheckbox(final int position) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ( categoriesListener != null ) {
+                    categoriesListener.onClickItem((CheckBox) v, position);
+                }
+            }
+        };
+    }
+
+    public interface CategoriesListener {
+        void onClickItem(CheckBox checkBox, int index);
     }
 
 
