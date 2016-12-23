@@ -33,4 +33,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_CATEGORY);
         this.onCreate(db);
     }
+
+    @Override
+    public synchronized void close() {
+        super.close();
+    }
 }

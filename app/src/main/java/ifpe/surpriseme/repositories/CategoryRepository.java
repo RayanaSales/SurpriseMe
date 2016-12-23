@@ -58,6 +58,7 @@ public class CategoryRepository {
             }
         }
 
+        md.getSQLiteDatabase(activity).close();
         return lista_categoria;
     }
 

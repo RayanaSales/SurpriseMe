@@ -24,6 +24,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -41,14 +42,22 @@ import ifpe.surpriseme.services.ChangeBackgroundOffline;
 public class BackgroundController extends Application {
 
     private String photoUrl = "";
+    private String photoUrlAnterior = "vazio";
 
 
     public void manageSwapBackground() {
         if (verificaConexao()) {
             try {
 
+                 /* tentativa de não repetir a foto
+                   photoUrl = new ManagerFlickr().execute(sortTagFromRepository()).get();
 
-                photoUrl = new ManagerFlickr().execute(sortTagFromRepository()).get();
+                while(photoUrl == photoUrlAnterior) {
+                    photoUrl = new ManagerFlickr().execute(sortTagFromRepository()).get();
+                }
+                photoUrlAnterior = photoUrl; */
+
+                 photoUrl = new ManagerFlickr().execute(sortTagFromRepository()).get();
 
                 // Picasso.with(ApplicationSingleton.getApplicationContext()).load(photoUrl).resize(950, 900).into(ApplicationSingleton.getCurrentImageSystemView()); //largura x altura
                 //ApplicationSingleton.setCurrentImageSystemView((ImageView) ApplicationSingleton.getRootView().findViewById(R.id.imageView)); //atualize a img atual
@@ -122,6 +131,7 @@ public class BackgroundController extends Application {
             System.out.println("Tag sorteada: " + categories.get(position).getName());
             return categories.get(position).getName();
         }
+
         return "love";
     }
 
@@ -143,14 +153,19 @@ public class BackgroundController extends Application {
     }
 
     private static boolean verificaConexao() {
-        boolean conectado;
-        ConnectivityManager conectivtyManager = (ConnectivityManager) ApplicationSingleton.getCurrentBackgroundActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (conectivtyManager.getActiveNetworkInfo() != null
-                && conectivtyManager.getActiveNetworkInfo().isAvailable()
-                && conectivtyManager.getActiveNetworkInfo().isConnected()) {
-            conectado = true;
-        } else {
-            conectado = false;
+        boolean conectado = false;
+        try {
+            ConnectivityManager conectivtyManager = (ConnectivityManager) ApplicationSingleton.getCurrentBackgroundActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (conectivtyManager.getActiveNetworkInfo() != null
+                    && conectivtyManager.getActiveNetworkInfo().isAvailable()
+                    && conectivtyManager.getActiveNetworkInfo().isConnected()) {
+                conectado = true;
+            } else {
+                conectado = false;
+            }
+        }catch (Exception e)
+        {
+            Toast toast = Toast.makeText(ApplicationSingleton.getCurrentBackgroundActivity(), "Sua conexão com a internet está oscilando! ", Toast.LENGTH_SHORT);
         }
         return conectado;
     }
