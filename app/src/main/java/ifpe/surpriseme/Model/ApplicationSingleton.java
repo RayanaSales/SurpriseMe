@@ -1,8 +1,11 @@
 package ifpe.surpriseme.Model;
+import android.app.Application;
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.ImageView;
+
+import ifpe.surpriseme.activities.MainActivity;
 
 public class ApplicationSingleton {
 
@@ -13,6 +16,8 @@ public class ApplicationSingleton {
     private static ImageView currentImageSystemView;
     private static int screenHeight;
     private static int screenWidth;
+
+
 
 
 

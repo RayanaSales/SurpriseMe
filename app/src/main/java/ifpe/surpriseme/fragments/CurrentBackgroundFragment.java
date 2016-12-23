@@ -41,8 +41,12 @@ public class CurrentBackgroundFragment extends Fragment {
         ApplicationSingleton.setCurrentActivity(getActivity());
         ApplicationSingleton.setRootView(inflater.inflate(R.layout.fragment_current_background, container, false));
         ApplicationSingleton.setCurrentImageSystemView((ImageView) ApplicationSingleton.getRootView().findViewById(R.id.imageView));
-        BackgroundController bg = new BackgroundController();
 
+//        if(ApplicationSingleton.getCurrentImageSystemView() != null){
+//            Picasso.with(ApplicationSingleton.getApplicationContext()).load(photoUrl).resize(950, 900).into(ApplicationSingleton.getCurrentImageSystemView());
+//        }
+
+        BackgroundController bg = new BackgroundController();
         bg.manageSwapBackground();
 
         return ApplicationSingleton.getRootView();
