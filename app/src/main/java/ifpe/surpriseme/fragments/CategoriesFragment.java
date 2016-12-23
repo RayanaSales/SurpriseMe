@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import ifpe.surpriseme.Model.ApplicationSingleton;
 import ifpe.surpriseme.Model.Category;
 import ifpe.surpriseme.R;
 import ifpe.surpriseme.adapters.CategoriaAdapter;
@@ -45,6 +46,9 @@ public class CategoriesFragment extends Fragment implements CategoriaAdapter.Cat
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        //initialize
+        ApplicationSingleton.setCurrentActivity(getActivity());
 
         View v = inflater.inflate(R.layout.fragment_categories, container, false);
         lv = (ListView) v.findViewById(R.id.listview_categorias);

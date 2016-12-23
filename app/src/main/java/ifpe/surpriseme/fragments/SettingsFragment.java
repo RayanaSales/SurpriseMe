@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import ifpe.surpriseme.Model.ApplicationSingleton;
 import ifpe.surpriseme.Model.Category;
 import ifpe.surpriseme.Model.PhoneSettings;
 import ifpe.surpriseme.R;
@@ -30,6 +31,9 @@ public class SettingsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        //initialize
+        ApplicationSingleton.setCurrentActivity(getActivity());
 
         View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
 

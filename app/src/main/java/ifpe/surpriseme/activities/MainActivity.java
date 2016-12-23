@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Window;
 
+import ifpe.surpriseme.Model.ApplicationSingleton;
 import ifpe.surpriseme.R;
 import ifpe.surpriseme.adapters.CategoriaAdapter;
 import ifpe.surpriseme.adapters.TabsPagerAdapter;
@@ -28,6 +29,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         setContentView(R.layout.activity_main);
 
         // Initilization
+        ApplicationSingleton.setApplicationContext(getApplicationContext());
         viewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getActionBar();
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
