@@ -54,7 +54,7 @@ public class SettingsFragment extends Fragment {
 
     private void initSettingsFragment(View rootView) {
 
-        Switch saveToPhone_Switch = (Switch) rootView.findViewById(R.id.saveToPhone_Switch);
+//        Switch saveToPhone_Switch = (Switch) rootView.findViewById(R.id.saveToPhone_Switch);
         EditText changeTime_editText = (EditText) rootView.findViewById(R.id.changeTime_editText);
         Spinner selectTime_spinner = (Spinner) rootView.findViewById(R.id.selectTime_spinner);
 
@@ -62,9 +62,9 @@ public class SettingsFragment extends Fragment {
 
         if (!list_settings.isEmpty()) {
 
-            if (list_settings.get(0).isSaveOnDevice() == true) {
-                saveToPhone_Switch.setChecked(true);
-            } else saveToPhone_Switch.setChecked(false);
+//            if (list_settings.get(0).isSaveOnDevice() == true) {
+//                saveToPhone_Switch.setChecked(true);
+//            } else saveToPhone_Switch.setChecked(false);
 
             changeTime_editText.setText(list_settings.get(0).getValueFrequency());
 
@@ -124,24 +124,24 @@ public class SettingsFragment extends Fragment {
             String[] columns = {DatabaseSchemaHelper.UserSettings._ID};
             ManagerDatabase md = new ManagerDatabase(getActivity(), DatabaseSchemaHelper.UserSettings.TABLE_NAME, columns);
 
-            Boolean saveToPhone_boolean = ((Switch) getView().findViewById(R.id.saveToPhone_Switch)).isChecked();
+            //Boolean saveToPhone_boolean = ((Switch) getView().findViewById(R.id.saveToPhone_Switch)).isChecked();
             String changeTime_editText = ((EditText) getView().findViewById(R.id.changeTime_editText)).getText().toString();
 
 
             ContentValues values = new ContentValues();
             values.put(DatabaseSchemaHelper.UserSettings.COLUMN_NAME_CHANGE_IMAGEM_TIME, changeTime_editText);
-            values.put(DatabaseSchemaHelper.UserSettings.COLUMN_NAME_SAVE_IMAGE_TOPHONE, saveToPhone_boolean);
+          //  values.put(DatabaseSchemaHelper.UserSettings.COLUMN_NAME_SAVE_IMAGE_TOPHONE, saveToPhone_boolean);
             values.put(DatabaseSchemaHelper.UserSettings.COLUMN_NAME_FREQUENCY, CustomOnItemSelectedListener.frequency);
 
             if (md.c.getCount() == 0) {
                 long newId = md.ds.insert(DatabaseSchemaHelper.UserSettings.TABLE_NAME, null, values);
 
-                Toast toast = Toast.makeText(getActivity(), "Registro adicionado. ID = " + newId, Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(ApplicationSingleton.getCurrentActivity(), "Registro adicionado. ID = " + newId, Toast.LENGTH_SHORT);
                 toast.show();
             } else {
                 long newId = md.ds.update(DatabaseSchemaHelper.UserSettings.TABLE_NAME, values, DatabaseSchemaHelper.UserSettings._ID + " =  1", null);
 
-                Toast toast = Toast.makeText(getActivity(), "Registro atualizado. ID = " + newId, Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(ApplicationSingleton.getCurrentActivity(), "Registro atualizado. ID = " + newId, Toast.LENGTH_SHORT);
                 toast.show();
 
             }

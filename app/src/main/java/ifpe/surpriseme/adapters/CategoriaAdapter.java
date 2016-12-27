@@ -2,9 +2,6 @@ package ifpe.surpriseme.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +15,6 @@ import java.util.List;
 import ifpe.surpriseme.Model.CategoriaHolder;
 import ifpe.surpriseme.Model.Category;
 import ifpe.surpriseme.R;
-import ifpe.surpriseme.fragments.CategoriesFragment;
-import ifpe.surpriseme.fragments.CurrentBackgroundFragment;
-import ifpe.surpriseme.fragments.SettingsFragment;
 
 public class CategoriaAdapter extends ArrayAdapter<Category> {
 

@@ -91,7 +91,7 @@ public class BackgroundController extends Application {
                 e.printStackTrace();
             }
         } else {
-            Toast toast = Toast.makeText(ApplicationSingleton.getCurrentBackgroundActivity(), "Sem internet! conecte-se! ", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(ApplicationSingleton.getCurrentActivity(), "Sem internet! conecte-se! ", Toast.LENGTH_SHORT);
             toast.show();
         }
     }
@@ -122,7 +122,7 @@ public class BackgroundController extends Application {
     }
 
     private String sortTagFromRepository() {
-        ArrayList<Category> categories = CategoryRepository.getCategoryRepository().list(ApplicationSingleton.getCurrentBackgroundActivity(), true);
+        ArrayList<Category> categories = CategoryRepository.getCategoryRepository().list(ApplicationSingleton.getCurrentActivity(), true);
 
         if (categories.size() != 0) {
             Random random = new Random();
@@ -138,7 +138,7 @@ public class BackgroundController extends Application {
     private void changeSystemBackground(ImageView imageSorted) {
         Bitmap bitmap = ((BitmapDrawable) imageSorted.getDrawable()).getBitmap();
         DisplayMetrics metrics = new DisplayMetrics();
-        ApplicationSingleton.getCurrentBackgroundActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        ApplicationSingleton.getCurrentActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         ApplicationSingleton.setScreenHeight(metrics.heightPixels);
         ApplicationSingleton.setScreenWidth(metrics.widthPixels);
 
@@ -155,7 +155,7 @@ public class BackgroundController extends Application {
     private static boolean verificaConexao() {
         boolean conectado = false;
         try {
-            ConnectivityManager conectivtyManager = (ConnectivityManager) ApplicationSingleton.getCurrentBackgroundActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager conectivtyManager = (ConnectivityManager) ApplicationSingleton.getCurrentActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
             if (conectivtyManager.getActiveNetworkInfo() != null
                     && conectivtyManager.getActiveNetworkInfo().isAvailable()
                     && conectivtyManager.getActiveNetworkInfo().isConnected()) {
@@ -164,7 +164,7 @@ public class BackgroundController extends Application {
                 conectado = false;
             }
         } catch (Exception e) {
-            Toast toast = Toast.makeText(ApplicationSingleton.getCurrentBackgroundActivity(), "Sua conexão com a internet está oscilando! ", Toast.LENGTH_SHORT);
+            System.out.print("Deu merda");
         }
         return conectado;
     }

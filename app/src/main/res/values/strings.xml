@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">SurpriseMe</string>
-    <string name="gostou_da_imagem_">Gostou do Imagem ?</string>
+    <string name="detalhes_imagem">Detalhes da imagem atual: </string>
     <string name="Sim">Sim</string>
     <string name="Nao">Não</string>
     <string name="Submit">Submeter</string>

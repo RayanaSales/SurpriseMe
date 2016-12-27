@@ -10,7 +10,7 @@ public class ApplicationSingleton {
 
     private static Context applicationContext;
     private static FragmentActivity currentActivity;
-    private static FragmentActivity currentBackgroundActivity;
+    //private static FragmentActivity currentBackgroundActivity;
     private static View rootView = null;
     private static ImageView currentImageSystemView;
     private static int screenHeight;
@@ -73,13 +73,13 @@ public class ApplicationSingleton {
         ApplicationSingleton.rootView = rootView;
     }
 
-    public static FragmentActivity getCurrentBackgroundActivity() {
-        return currentBackgroundActivity;
-    }
-
-    public static void setCurrentBackgroundActivity(FragmentActivity currentBackgroundActivity) {
-        ApplicationSingleton.currentBackgroundActivity = currentBackgroundActivity;
-    }
+//    public static FragmentActivity getCurrentBackgroundActivity() {
+//        return currentBackgroundActivity;
+//    }
+//
+//    public static void setCurrentBackgroundActivity(FragmentActivity currentBackgroundActivity) {
+//        ApplicationSingleton.currentBackgroundActivity = currentBackgroundActivity;
+//    }
 
     public static String getCurrentUrlPic() {
         return currentUrlPic;

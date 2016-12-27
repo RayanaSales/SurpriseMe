@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import ifpe.surpriseme.fragments.CategoriesFragment;
-import ifpe.surpriseme.fragments.CurrentBackgroundFragment;
 import ifpe.surpriseme.fragments.SettingsFragment;
 
 /**
@@ -22,10 +21,8 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int index) {
         switch (index) {
             case 0:
-                return new CurrentBackgroundFragment();
-            case 1:
                 return new CategoriesFragment();
-            case 2:
+            case 1:
                 return new SettingsFragment();
         }
         return null;
@@ -34,7 +31,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // get item count - equal to number of tabs
-        return 3;
+        return 2;
     }
 
     @Override
