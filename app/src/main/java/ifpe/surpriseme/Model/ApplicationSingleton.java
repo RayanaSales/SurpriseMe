@@ -1,11 +1,10 @@
 package ifpe.surpriseme.Model;
-import android.app.Application;
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import ifpe.surpriseme.activities.MainActivity;
+import ifpe.surpriseme.controllers.BackgroundController;
 
 public class ApplicationSingleton {
 
@@ -16,6 +15,8 @@ public class ApplicationSingleton {
     private static ImageView currentImageSystemView;
     private static int screenHeight;
     private static int screenWidth;
+    private static String currentUrlPic;
+    private static BackgroundController backgroundController;
 
 
 
@@ -78,5 +79,21 @@ public class ApplicationSingleton {
 
     public static void setCurrentBackgroundActivity(FragmentActivity currentBackgroundActivity) {
         ApplicationSingleton.currentBackgroundActivity = currentBackgroundActivity;
+    }
+
+    public static String getCurrentUrlPic() {
+        return currentUrlPic;
+    }
+
+    public static void setCurrentUrlPic(String currentUrlPic) {
+        ApplicationSingleton.currentUrlPic = currentUrlPic;
+    }
+
+    public static BackgroundController getBackgroundController() {
+        return backgroundController;
+    }
+
+    public static void setBackgroundController(BackgroundController backgroundController) {
+        ApplicationSingleton.backgroundController = backgroundController;
     }
 }

@@ -15,8 +15,8 @@
     <string name="time_prompt">Choose a time</string>
 
     <string-array name="time_arrays">
-        <item>Minutes</item>
-        <item>Hours</item>
-        <item>Days</item>
+        <item>minute</item>
+        <item>hour</item>
+        <item>second</item>
     </string-array>
 </resources>

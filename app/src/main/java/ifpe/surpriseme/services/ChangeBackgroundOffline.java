@@ -15,7 +15,6 @@ public class ChangeBackgroundOffline extends BroadcastReceiver
     public void onReceive(Context context, Intent intent) {
 
         //um alarme eh disparado e me chama de acordo com o tempo definido em bg controller
-        BackgroundController bg = new BackgroundController();
-        bg.manageSwapBackground();
+        ApplicationSingleton.getBackgroundController().manageSwapBackground();
     }
 }

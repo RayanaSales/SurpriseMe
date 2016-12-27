@@ -21,6 +21,7 @@ import ifpe.surpriseme.Model.ApplicationSingleton;
 import ifpe.surpriseme.Model.Category;
 import ifpe.surpriseme.Model.PhoneSettings;
 import ifpe.surpriseme.R;
+import ifpe.surpriseme.controllers.BackgroundController;
 import ifpe.surpriseme.database.DatabaseSchemaHelper;
 import ifpe.surpriseme.database.ManagerDatabase;
 import ifpe.surpriseme.repositories.SettingsRepository;
@@ -51,24 +52,23 @@ public class SettingsFragment extends Fragment {
         return rootView;
     }
 
-    private void initSettingsFragment(View rootView){
+    private void initSettingsFragment(View rootView) {
 
         Switch saveToPhone_Switch = (Switch) rootView.findViewById(R.id.saveToPhone_Switch);
         EditText changeTime_editText = (EditText) rootView.findViewById(R.id.changeTime_editText);
-        Spinner selectTime_spinner = (Spinner)  rootView.findViewById(R.id.selectTime_spinner);
+        Spinner selectTime_spinner = (Spinner) rootView.findViewById(R.id.selectTime_spinner);
 
         ArrayList<PhoneSettings> list_settings = SettingsRepository.getSettingsRepository().list(getActivity());
 
-        if(!list_settings.isEmpty()){
+        if (!list_settings.isEmpty()) {
 
-            if (list_settings.get(0).isSaveOnDevice() == true){
+            if (list_settings.get(0).isSaveOnDevice() == true) {
                 saveToPhone_Switch.setChecked(true);
-            }
-            else saveToPhone_Switch.setChecked(false);
+            } else saveToPhone_Switch.setChecked(false);
 
             changeTime_editText.setText(list_settings.get(0).getValueFrequency());
 
-            switch (list_settings.get(0).getTimeFrequency()){
+            switch (list_settings.get(0).getTimeFrequency()) {
                 case "Minutes":
                     selectTime_spinner.setSelection(0);
                     break;
@@ -127,6 +127,7 @@ public class SettingsFragment extends Fragment {
             Boolean saveToPhone_boolean = ((Switch) getView().findViewById(R.id.saveToPhone_Switch)).isChecked();
             String changeTime_editText = ((EditText) getView().findViewById(R.id.changeTime_editText)).getText().toString();
 
+
             ContentValues values = new ContentValues();
             values.put(DatabaseSchemaHelper.UserSettings.COLUMN_NAME_CHANGE_IMAGEM_TIME, changeTime_editText);
             values.put(DatabaseSchemaHelper.UserSettings.COLUMN_NAME_SAVE_IMAGE_TOPHONE, saveToPhone_boolean);
@@ -145,6 +146,8 @@ public class SettingsFragment extends Fragment {
 
             }
 
+            ApplicationSingleton.setBackgroundController(new BackgroundController(CustomOnItemSelectedListener.frequency,changeTime_editText));
+            ApplicationSingleton.getBackgroundController().manageSwapBackground();
         }
     };
 
